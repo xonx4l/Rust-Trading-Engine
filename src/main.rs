@@ -22,9 +22,10 @@ impl Orderbook {
     }
 
     fn add_order(&mut self, price:f64, order:Order) {
-         match order.bid_or_ask {
+        let price = Price::new(price); 
+
+        match order.bid_or_ask {
             BidOrAsk::Bid => {
-                let price = Price::new(price);
                 let limit = self.bids.get_mut(&price); 
 
                 match limit {
@@ -38,10 +39,22 @@ impl Orderbook {
             }
         
 
-         BidOrAsk::Ask  =>   {}
-      }
-   }
+         BidOrAsk::Ask  =>   {
+            let limit = self.bids.get_mut(&price);
+
+            match limit {
+                    Some(limit) => limit.add_order(order),
+                    None => {
+                        let mut limit = Limit::new(price);
+                        limit.add_order(order);
+                        self.asks.insert(price, limit);
+                    }
+                }
+            }
+        }
+    }
 }
+
 #[derive(Debug, Eq , PartialEq, Hash, Clone, Copy )]
 struct Price {
     integral: u64,
@@ -101,6 +114,9 @@ fn main() {
     let mut orderbook = Orderbook::new();
     orderbook.add_order(4.4, buy_order_from_alice);
     orderbook.add_order(4.4, buy_order_from_bob);
+
+    let sell_order = Order::new(BidOrAsk::Ask, 2.3);
+    orderbook.add_order(20.0, sell_order); 
 
     println!("{:?}", orderbook);
 }
