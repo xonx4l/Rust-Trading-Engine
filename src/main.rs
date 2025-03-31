@@ -14,5 +14,7 @@ fn main() {
     let sell_order = Order::new(BidOrAsk::Ask, 2.3);
     orderbook.add_order(20.0, sell_order); 
 
-    println!("{:?}", orderbook);
+    let mut engine = MatchingEngine::new();
+    let pair = TradingPair::new("BTC".to_string(), "USD".to_string());
+    engine.add_new_market(pair);
 }
