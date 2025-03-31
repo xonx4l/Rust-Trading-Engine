@@ -1,8 +1,9 @@
 mod matching_engine;
+use matching_engine::engine::MatchingEngine;
 use matching_engine::orderbook::{ BidOrAsk, Order, Orderbook};
 
 fn main() {
-    let buy_order_from_alice = Order::new (BidOrAsk::Bid, 5.5);
+    let buy_order_from_alice = Order::new(BidOrAsk::Bid, 5.5);
     let buy_order_from_bob = Order::new(BidOrAsk::Bid, 2.5);
 
 
