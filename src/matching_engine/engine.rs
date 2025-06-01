@@ -1,4 +1,4 @@
-use::Super::orderbook::{Order,Orderbook};
+use::super::orderbook::{Order,Orderbook};
 use std::collections::HashMap;
 
 #[derive(Debug, Eq, PartialEq, Hash, Clone)]
@@ -29,8 +29,8 @@ impl MatchingEngine {
     }
 
 
-pub fn add_new_market(&self, pair: TradingPair) {
-    self.orderbooks.insert(pair.clone(), orderbook::new());
+pub fn add_new_market(&mut self, pair: TradingPair) {
+    self.orderbooks.insert(pair.clone(), Orderbook::new());
 
     println!("opening new orderbook for market {:?}", pair.to_string());
    }

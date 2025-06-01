@@ -101,7 +101,7 @@ pub struct Order {
 } 
 
 impl Order {
-    fn new(bid_or_ask: BidOrAsk, size: f64) -> Order {
+     pub fn new(bid_or_ask: BidOrAsk, size: f64) -> Order {
         Order { bid_or_ask, size}
     }
 }
