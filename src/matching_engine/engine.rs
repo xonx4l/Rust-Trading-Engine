@@ -40,10 +40,14 @@ pub fn place_limit_order(&mut self, pair: TradingPair, price:f64, order:Order) -
               match self.orderbook.get_mut(&pair) {
                    Some(orderbook) => {
                        orderbook.add_order(price, order);
+
+                       println!(" placed limit order at price level {}", price);
+
                        Ok(())
                    }
                    None => Err(format!(
-                    "the orderbook for the given trading pair ({}) does not exist", pair.to_string()
+                    "the orderbook for the given trading pair ({}) does not exist", 
+                    pair.to_string()
                    )),
               }
     }
