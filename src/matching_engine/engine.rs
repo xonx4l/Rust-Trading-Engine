@@ -37,7 +37,7 @@ pub fn add_new_market(&self, pair: TradingPair) {
 
 
 pub fn place_limit_order(&mut self, pair: TradingPair, price:f64, order:Order) -> Result<(), String> {
-              match self.orderbook.get_mut(&pair) {
+              match self.orderbooks.get_mut(&pair) {
                    Some(orderbook) => {
                        orderbook.add_order(price, order);
 
