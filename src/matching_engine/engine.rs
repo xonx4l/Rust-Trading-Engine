@@ -1,4 +1,4 @@
-use::super::orderbook::{Order,Orderbook};
+use::Super::orderbook::{Order,Orderbook};
 use std::collections::HashMap;
 
 #[derive(Debug, Eq, PartialEq, Hash, Clone)]
@@ -18,7 +18,7 @@ impl TradingPair {
 }
 
 pub struct MatchingEngine {
-    orderbooks: Hashmap<TradingPair, Orderbook>,
+    orderbooks: HashMap<TradingPair, Orderbook>,
 } 
 
 impl MatchingEngine {

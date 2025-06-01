@@ -1,5 +1,6 @@
 mod matching_engine;
 use matching_engine::engine::MatchingEngine;
+use matching_engine::engine::TradingPair;
 use matching_engine::orderbook::{ BidOrAsk, Order, Orderbook};
 
 fn main() {
